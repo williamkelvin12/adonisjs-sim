@@ -1,0 +1,41 @@
+{
+  "include": [
+    "**/*"
+  ],
+  "extends": "./node_modules/@adonisjs/mrm-preset/_tsconfig",
+  "files": [
+    "./node_modules/@adonisjs/core/build/adonis-typings/index.d.ts",
+    "./node_modules/@adonisjs/lucid/build/adonis-typings/index.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ],
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "build",
+    "rootDir": "./",
+    "sourceMap": true,
+    "paths": {
+      "App/*": [
+        "./app/*"
+      ],
+      "Config/*": [
+        "./config/*"
+      ],
+      "Contracts/*": [
+        "./contracts/*"
+      ],
+      "Database/*": [
+        "./database/*"
+      ]
+    },
+    "types": [
+      "@adonisjs/core",
+      "@japa/preset-adonis/build/adonis-typings",
+      "@adonisjs/lucid"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "sim-example",
+  "version": "1.0.40",
+  "main": "build/providers/SimProvider",
+  "scripts": {
+    "dev": "node ace serve --watch",
+    "build": "node ace build --production",
+    "start": "node server.js",
+    "mrm": "mrm --preset=@adonisjs/mrm-preset",
+    "test": "node ace test"
+  },
+  "types": "build/adonis-typings/index.d.ts",
+  "devDependencies": {
+    "@adonisjs/assembler": "^5.9.5",
+    "@adonisjs/mrm-preset": "^5.0.3",
+    "@japa/preset-adonis": "^1.2.0",
+    "@japa/runner": "^2.5.1",
+    "@types/proxy-addr": "^2.0.0",
+    "@types/source-map-support": "^0.5.6",
+    "adonis-preset-ts": "^2.1.0",
+    "mrm": "^4.1.17",
+    "pino-pretty": "^10.2.0",
+    "typescript": "~4.6",
+    "youch": "^3.2.3",
+    "youch-terminal": "^2.2.2"
+  },
+  "dependencies": {
+    "@adonisjs/core": "^5.8.0",
+    "@adonisjs/lucid": "^18.4.0",
+    "luxon": "^3.3.0",
+    "pg": "^8.11.2",
+    "proxy-addr": "^2.0.7",
+    "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.21"
+  },
+  "adonisjs": {
+    "types": "sim-example",
+    "providers": [
+      "sim-example"
+    ]
+  },
+  "mrmConfig": {
+    "core": false,
+    "license": "MIT",
+    "services": [],
+    "minNodeVersion": "16.13.1",
+    "probotApps": []
+  }
+}
