@@ -1,0 +1,45 @@
+{
+  "name": "adonis-sim",
+  "version": "1.0.10",
+  "main": "build/providers/SimProvider.js",
+  "license": "MIT",
+  "scripts": {
+    "mrm": "mrm --preset=@adonisjs/mrm-preset",
+    "pretest": "npm run lint",
+    "test": "node -r @adonisjs/require-ts/build/register bin/test.ts",
+    "clean": "del-cli build",
+    "compile": "npm run clean && tsc",
+    "build": "npm run compile",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@adonisjs/core": "^5.8.2",
+    "@adonisjs/lucid": "^18.0.0",
+    "@adonisjs/mrm-preset": "^5.0.3",
+    "@adonisjs/require-ts": "^2.0.13",
+    "@types/node": "^20.4.6",
+    "del-cli": "^5.0.0",
+    "mrm": "^4.1.17",
+    "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "@adonisjs/core": "^5.8.2",
+    "@adonisjs/lucid": "^18.0.0"
+  },
+  "mrmConfig": {
+    "core": false,
+    "license": "MIT",
+    "services": [],
+    "minNodeVersion": "16.13.1",
+    "probotApps": []
+  },
+  "files": [
+    "build/providers",
+    "package.json"
+  ],
+  "adonisjs": {
+    "providers": [
+      "adonis-sim"
+    ]
+  }
+}
