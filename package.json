@@ -1,6 +1,6 @@
 {
   "name": "adonis-sim",
-  "version": "1.0.10",
+  "version": "1.0.21",
   "main": "build/providers/SimProvider.js",
   "license": "MIT",
   "scripts": {

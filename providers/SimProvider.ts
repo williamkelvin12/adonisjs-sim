@@ -1,29 +1,29 @@
-import { ApplicationContract } from '@ioc:Adonis/Core/Application'
+import { ApplicationContract } from "@ioc:Adonis/Core/Application";
 
 export default class SimProvider {
-  public static needsApplication = true
+  public static needsApplication = true;
 
-  constructor (protected application: ApplicationContract) {
-  }
+  constructor(protected app: ApplicationContract) {}
 
-  public register () {
-    this.application.container.singleton('Sim/LucidModel', () => {
-      const { CamelCaseNamingStrategy } = require('../src/SimModel')
+  public register() {
+    this.app.container.singleton('Sim/Classes', () => {
+      class Teste {
+        public message: string = "teste"
+      }
 
-      return CamelCaseNamingStrategy
+      return Teste
     })
   }
 
-  public async boot () {
-    const { string }  = (await import ('@ioc:Adonis/Core/Helpers'))
-    const { SnakeCaseNamingStrategy } = (await import('@ioc:Adonis/Lucid/Orm'))
-
+  public async boot() {
+    const { BaseModel, SnakeCaseNamingStrategy } = this.app.container.use("Adonis/Lucid/Orm");
+    const { string } = await import ('@poppinss/utils/build/helpers')
     class CamelCaseNamingStrategy extends SnakeCaseNamingStrategy {
-      public static serializedName(_model: typeof BaseModel, propertyName: string) {
+      public serializedName(_model: typeof BaseModel, propertyName: string) {
         return string.camelCase(propertyName)
       }
-
-      public static paginationMetaKeys() {
+    
+      public paginationMetaKeys() {
         return {
           total: 'total',
           perPage: 'perPage',
@@ -38,15 +38,17 @@ export default class SimProvider {
       }
     }
 
-    const { BaseModel } = this.application.container.use('Adonis/Lucid/Orm')
-    BaseModel.namingStrategy = new CamelCaseNamingStrategy()
+    BaseModel.namingStrategy = new CamelCaseNamingStrategy();
+
+    const Database = this.app.container.use("Adonis/Lucid/Database");
+      Database.SimplePaginator.namingStrategy = {
+        paginationMetaKeys() {
+          return new CamelCaseNamingStrategy().paginationMetaKeys();
+        },
+      };
   }
 
-  public async ready () {
-    
-  }
+  public async ready() {}
 
-  public async shutdown () {
-    
-  }
+  public async shutdown() {}
 }
